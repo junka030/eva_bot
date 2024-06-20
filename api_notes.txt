@@ -1,0 +1,19 @@
+user input : !cmd_name arg
+
+@bot.command(name='cmd_name')
+async def foo(ctx, arg):
+    await my_func(ctx)
+
+# can take in n arguments by space,!cmd arg1 arg2 arg3
+
+@bot.command()
+async def test(ctx, *, kwarg): 
+    await ctx.send(kwarg)    
+
+# take in only one argument including spaces
+    
+ctx: Context class
+Context.guild returns the Guild of the command, if any.
+Context.message returns the Message of the command.
+Context.author returns the Member or User that called the command.
+Context.send() to send a message to the channel the command was used in.
