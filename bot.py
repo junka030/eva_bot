@@ -132,14 +132,15 @@ async def set_roles(ctx):
     await ctx.channel.purge(limit=1)
 
     msg = discord.Embed(
-        title = "Welcome To Nerv",
+        title = "特務機関NERV(ネルフ)へようこそ！\n Welcome To Nerv! \n",
         url = "https://youtu.be/o6wtDPVkKqI?si=shQv8toQzG-W7SGR",
         description="""
+            希望部署を選んでください。\n
             Please select your roles.\n
-            🕹️ : commander
-            🎛️ : operator
-            🖥️ : developer
-            🤖 : eva-pilot
+            作戦司令部 🕹️ : commander 指揮官 
+            戦術作戦部 🎛️ : operator  オペレーター
+            技術開発部 🖥️ : developer プログラマー
+            決戦兵器部 🤖 : eva-pilot エヴァパイロット \n\n
         """,
         color= 0x992D22
     )
@@ -157,7 +158,7 @@ bot.get_command('clear').hidden = True
 bot.get_command('help').hidden = True
 
 # chat command
-@bot.command(name='chat', help='Rei chats with you.')
+@bot.command(name='chat', brief='会話', help='Rei chats with you.')
 async def chatting(ctx, *, msg=''):
     try:
         response = get_response(msg)
@@ -166,13 +167,13 @@ async def chatting(ctx, *, msg=''):
         print(f"error: {e}")
 
 # gif command
-@bot.command(name="gif", help="Rei sends gif.")
+@bot.command(name="gif", brief='GIF画像', help="Rei sends gif.")
 async def gif(ctx,*,term='ayanami rei'):
     term = "evangelion " + term
     await send_gif(ctx,GIF_KEY,term)
 
 # music commands
-@bot.command(name='play', help='Rei search and play music.')
+@bot.command(name='play', brief='音楽再生', help='Rei searches and plays music.')
 async def play(ctx,*,search):
     voice_channel = ctx.author.voice.channel if ctx.author.voice else None
     if not voice_channel:
@@ -180,12 +181,12 @@ async def play(ctx,*,search):
     await add_song(ctx,search)
 
 
-@bot.command(name='skip', help='Rei skips the current music.')
+@bot.command(name='skip', brief='曲スキップ', help='Rei skips the current music.')
 async def skip(ctx):
     await skip_song(ctx) 
 
 
-@bot.command(name='stop',help='Rei stops playing music.')
+@bot.command(name='stop', brief='再生停止', help='Rei stops playing music.')
 async def stop(ctx):
     await stop_song(ctx)
     
