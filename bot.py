@@ -36,16 +36,16 @@ Events
 """
 @client.event
 async def on_member_join(member):
-    lobby_id = 1253416929364807751
-    channel = client.get_channel(lobby_id)
+    reception_id = 1253499050154528768
+    channel = client.get_channel(reception_id)
 
     if channel:
-        await client.get_channel.send(f'Hi {member.mention}, welcome to Nerv!')
+        await client.get_channel.send(f'{member.mention}, いらっしゃい🎶! Welcome!')
 
 # add roles
 @bot.event
 async def on_raw_reaction_add(payload):
-    role_msg_id = 1253424552558723142;
+    role_msg_id = 1253498580384092251;
     role_mappings = {
             '🕹️': 'commander',
             '🎛️': 'operator',
@@ -84,7 +84,7 @@ async def on_raw_reaction_add(payload):
 # remove roles
 @bot.event
 async def on_raw_reaction_remove(payload):
-    role_msg_id = 1253424552558723142;
+    role_msg_id = 1253498580384092251;
     role_mappings = {
             '🕹️': 'commander',
             '🎛️': 'operator',
@@ -134,13 +134,13 @@ async def set_roles(ctx):
     msg = discord.Embed(
         title = "特務機関NERV(ネルフ)へようこそ！\n Welcome To Nerv! \n",
         url = "https://youtu.be/o6wtDPVkKqI?si=shQv8toQzG-W7SGR",
-        description="""
-            希望部署を選んでください。\n
+        description="""\n
+            希望部署を選んでください。
             Please select your roles.\n
-            作戦司令部 🕹️ : commander 指揮官 
-            戦術作戦部 🎛️ : operator  オペレーター
-            技術開発部 🖥️ : developer プログラマー
-            決戦兵器部 🤖 : eva-pilot エヴァパイロット \n\n
+            作戦司令部 🕹️ : commander 指揮官\n 
+            戦術作戦部 🎛️ : operator  オペレーター\n
+            技術開発部 🖥️ : developer プログラマー\n
+            決戦兵器部 🤖 : eva-pilot エヴァパイロット \n\n\n
         """,
         color= 0x992D22
     )

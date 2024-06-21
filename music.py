@@ -21,7 +21,7 @@ async def add_song(ctx,search):
             url = info['url']
             title = info['title']
             queue.append((url,title))
-            await ctx.send(f'🎼**{title}** added to queue🎶')
+            await ctx.send(f'🎼 **{title}** 次に再生します。\n**{title}** added to queue🎶')
     
     if not ctx.voice_client.is_playing():
         await play_song(ctx)
@@ -34,20 +34,20 @@ async def play_song(ctx):
             print(f'Preparing to play: {title}')
             source = await discord.FFmpegOpusAudio.from_probe(url,**FFMPEG_OPTIONS)
             ctx.voice_client.play(source, after=lambda _:ctx.bot.loop.create_task(play_song(ctx)))
-            await ctx.send(f'▶️ Now playing **{title}**.')
+            await ctx.send(f'▶️ **{title}**再生中。\nNow playing **{title}**.')
         except Exception as e:
             print(f'Error playing song: {e}')
     elif not ctx.voice_client.is_playing():
-        await ctx.send('⏏️ Music queue is empty!')
+        await ctx.send('⏏️ 新曲追加お願いします。\nMusic queue is empty!')
     
 
 async def skip_song(ctx):
     if ctx.voice_client and ctx.voice_client.is_playing():
         ctx.voice_client.stop()
-        await ctx.send('⏭️ Song skipped.')
+        await ctx.send('⏭️ 曲スキップします。\nSong skipped.')
 
 
 async def stop_song(ctx):
     if ctx.voice_client.is_playing():
         ctx.voice_client.stop()
-        await ctx.send('⏹️ Stopped music.')
+        await ctx.send('⏹️ 再生停止です。\nStopped music.')
