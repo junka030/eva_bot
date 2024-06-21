@@ -15,14 +15,15 @@ def get_response(user_input:str) -> str:
         ]) 
     
 async def send_gif(ctx,apikey,search_term):
-    lmt = 1 # limit 
+    lmt = 8 # limit 
     ckey = "dcbot"
     url = f"https://tenor.googleapis.com/v2/search?q={search_term}&key={apikey}&client_key={ckey}&limit={lmt}"
     r = requests.get(url) 
+    idx = random.randint(0, 7)
 
     if r.status_code == 200:
         data = json.loads(r.content)
-        await ctx.send(data['results'][0]['url'])
+        await ctx.send(data['results'][idx]['url'])
 
     else:
         print("Failed to fetch GIFs from Tenor API.")

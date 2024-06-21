@@ -174,10 +174,10 @@ async def gif(ctx,*,term='ayanami rei'):
 
 # music commands
 @bot.command(name='play', brief='音楽再生', help='Rei searches and plays music.')
-async def play(ctx,*,search):
+async def play(ctx,*,search='The Cruel Angel\'s Thesis'):
     voice_channel = ctx.author.voice.channel if ctx.author.voice else None
     if not voice_channel:
-        return await ctx.send("Please join a voice channel!")
+        return await ctx.send("音声チャネル参加しなさい!\n Please join a voice channel!")
     await add_song(ctx,search)
 
 
