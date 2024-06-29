@@ -172,6 +172,11 @@ async def gif(ctx,*,term='ayanami rei'):
     term = "evangelion " + term
     await send_gif(ctx,GIF_KEY,term)
 
+# meet command
+@bot.command(name="meet", brief='キャライラスト', help="Rei lets you meet everyone.")
+async def meet(ctx):
+    await ctx.send("Choose a character!",view=CharView())
+
 # music commands
 @bot.command(name='play', brief='音楽再生', help='Rei searches and plays music.')
 async def play(ctx,*,search='The Cruel Angel\'s Thesis'):
