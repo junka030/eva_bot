@@ -197,7 +197,7 @@ async def stop(ctx):
     await stop_song(ctx)
 
 # quiz commands
-@bot.command(name="quiz")
+@bot.command(name="quiz", brief='エヴァクイズ', help='Evangelion trivia.')
 async def quiz(ctx):
     # await ctx.reply("This is X quiz.\nGood luck!",view=QuizView())
     try:
