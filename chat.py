@@ -74,3 +74,5 @@ class CharView(discord.ui.View):
     )
     async def callback(self,select,interaction):
         await send_charpic(interaction,select.values[0])
+
+

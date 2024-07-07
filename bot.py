@@ -8,6 +8,7 @@ from discord import Intents, Client, Message
 
 from chat import *
 from music import *
+from quiz import *
 
 """
 Set-up
@@ -194,7 +195,28 @@ async def skip(ctx):
 @bot.command(name='stop', brief='再生停止', help='Rei stops playing music.')
 async def stop(ctx):
     await stop_song(ctx)
-    
+
+# quiz commands
+@bot.command(name="quiz")
+async def quiz(ctx):
+    # await ctx.reply("This is X quiz.\nGood luck!",view=QuizView())
+    try:
+        response = requests.get(f"{FLASK_API_URL}/random")
+        response.raise_for_status()  # Raise an exception for HTTP errors
+        question = response.json()
+
+        # Assuming QuizView is a class that displays choices as buttons in Discord
+        if 'question' in question and 'choices' in question:
+            await ctx.send(question['question'], view=QuizView(question['id'], question['choices']))
+        else:
+            await ctx.send("Invalid question format received from server.")
+
+    except requests.exceptions.RequestException as e:
+        await ctx.send(f"Error fetching quiz: {e}")
+
+    except ValueError as e:
+        await ctx.send(f"Error decoding JSON: {e}")
+
 """
 Program loop
 """
